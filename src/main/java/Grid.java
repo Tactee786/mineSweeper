@@ -17,7 +17,7 @@ public class Grid {
         this.myGrid = new Tile[rowCount][columnCount];
         for (int i = 0; i < rowCount; i++){
             for (int j = 0; j < columnCount; j++){
-                Tile myTile = new Tile(false,false,false, "O",0);
+                Tile myTile = new Tile(false,false,false, ".",0);
                 myGrid[i][j] = myTile;
             }
         }
@@ -101,7 +101,7 @@ public class Grid {
                         }
                     }//8
                     //System.out.println("there is no bomb: ");
-                    myGrid[i][j].setState(bombCount);
+                    //myGrid[i][j].setState(bombCount);
                     myGrid[i][j].bombCount=(bombCount);
                     //System.out.println(bombCount);
                 }
@@ -124,10 +124,12 @@ public class Grid {
         x -= 1;
         y -= 1;
         myGrid[x][y].getTileState();
+        //System.out.println(myGrid[x][y].getTileState());
         if (myGrid[x][y].getBomb() == true){
             System.out.println("you lose!!!");
-        } else if (myGrid[x][y].getBomb() == false) {
-            System.out.println("not a bomb :)");
+        } else if (myGrid[x][y].getBomb() == false){
+            revealEmptyTiles(x,y);
+            //System.out.println("after reveal");
         }
     }
 
@@ -137,18 +139,35 @@ public class Grid {
         int leftOrRight = myScanner.nextInt();
         if (leftOrRight == 1){
             System.out.print("type the X coordinate of the tile you would like to click: ");
-            int x = myScanner.nextInt();
-            System.out.print("type the Y coordinate of the tile you would like to click: ");
             int y = myScanner.nextInt();
+            System.out.print("type the Y coordinate of the tile you would like to click: ");
+            int x = myScanner.nextInt();
             clickSpot(x,y);
         } else if (leftOrRight == 2) {
             System.out.print("type the X coordinate of the tile you would like to set a flag: ");
-            int x = myScanner.nextInt();
-            System.out.print("type the Y coordinate of the tile you would like to set a flag: ");
             int y = myScanner.nextInt();
+            System.out.print("type the Y coordinate of the tile you would like to set a flag: ");
+            int x = myScanner.nextInt();
             setFlags(x,y);
         }
     }
 
+    public void revealEmptyTiles(int x, int y){
+        //System.out.println(myGrid[x][y].getBombCount() + "hello");
+        if (myGrid[x][y].getBombCount() == 0){
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
+        } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
+        } else {
+            System.out.println("not null");
+        }
+    }
 
 }
+//(myGrid[x][y].getTileState() != "X")
+//(myGrid[x][y].getBombCount())
+/*else if (myGrid[x][y].getTileState() != "X") {
+            System.out.println("Bomb count is dunno");
+        }*/

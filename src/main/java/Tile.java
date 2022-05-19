@@ -20,16 +20,27 @@ public class Tile {
         return this.state;
     }
 
+    public int getBombCount(){
+        return this.bombCount;
+    }
+
     public void setFlag(){
         this.flag = !this.flag;
         //System.out.println(getBomb());
         if ((this.flag) == true){
             this.state = "F";
-        } else if (this.flag == false && this.bomb == true) {
-            this.state = "X";
-        } else if (this.flag == false && this.bomb == false){
+        } else if (this.flag == false && this.bomb == true && this.visible == false) {
+            //this.state = "X";
+            // this.state = "O";
+        } else if (this.flag == false && this.bomb == false && this.visible == false) {
+            this.state = "O";
+        } else if (this.flag == false && this.bomb == false && this.visible == true){
             this.state = Integer.toString(bombCount);
         }
+    }
+
+    public boolean setVisible(){
+        return (this.visible = true);
     }
 
     public void setBomb(){
@@ -40,6 +51,7 @@ public class Tile {
     public boolean getBomb(){
         return this.bomb;
     }
+
     public void setState(int bombCount){
         this.state = Integer.toString(bombCount);
     }
