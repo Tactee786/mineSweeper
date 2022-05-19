@@ -8,7 +8,7 @@ public class TileTest {
 
     @Test
     public void testGetState(){
-        Assertions.assertEquals("O", myTile.getState(),"incorrect state.");
+        Assertions.assertEquals("O", myTile.getTileState(),"incorrect state.");
     }
 
 }

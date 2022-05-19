@@ -28,7 +28,7 @@ public class Grid {
         for (int i = 0; i < rowCount; i++){
             for (int j = 0; j < columnCount; j++){
                 Tile myTile = new Tile(false,false,false, "0",0);
-                System.out.print(myGrid[i][j].getState() + "  ");
+                System.out.print(myGrid[i][j].getTileState() + "  ");
             }
             System.out.print("\n");
         }
@@ -120,19 +120,31 @@ public class Grid {
         myGrid[x][y].setFlag();
     }
 
-    public void clickSpot(){
-        
+    public void clickSpot(int x, int y){
+        x -= 1;
+        y -= 1;
+        myGrid[x][y].getTileState();
+        if (myGrid[x][y].getBomb() == true){
+            System.out.println("you lose!!!");
+        } else if (myGrid[x][y].getBomb() == false) {
+            System.out.println("not a bomb :)");
+        }
     }
-
 
     public void clickOrFlag(){
         Scanner myScanner = new Scanner(System.in);
         System.out.print("type 1 for clicking a tile or 2 for placing a flag: ");
         int leftOrRight = myScanner.nextInt();
         if (leftOrRight == 1){
-            
-        } else if (leftOrRight == 2) {
+            System.out.print("type the X coordinate of the tile you would like to click: ");
             int x = myScanner.nextInt();
+            System.out.print("type the Y coordinate of the tile you would like to click: ");
+            int y = myScanner.nextInt();
+            clickSpot(x,y);
+        } else if (leftOrRight == 2) {
+            System.out.print("type the X coordinate of the tile you would like to set a flag: ");
+            int x = myScanner.nextInt();
+            System.out.print("type the Y coordinate of the tile you would like to set a flag: ");
             int y = myScanner.nextInt();
             setFlags(x,y);
         }
