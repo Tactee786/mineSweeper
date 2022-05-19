@@ -25,13 +25,24 @@ public class Tile {
         if ((this.flag) == true){
             this.state = "F";
         } else if (this.flag == false) {
-            this.state = "O";
+            if (bomb == true){
+                //myGrid[x][y].myTile.bomb == true;
+                this.state = "X";
+            } else if (bomb == false); {
+                this.state = Integer.toString(bombCount);
+            }
         }
     }
 
     public void setBomb(){
         this.bomb = true;
         this.state = "X";
+    }
+
+    public void getBomb(){
+        if (this.bomb == true){
+
+        }
     }
 
     public void setState(int bombCount){
