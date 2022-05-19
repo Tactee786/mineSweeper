@@ -120,20 +120,22 @@ public class Grid {
         myGrid[x][y].setFlag();
     }
 
-    public void clickSpot(int x, int y){
+    public boolean clickSpot(int x, int y){
         x -= 1;
         y -= 1;
         myGrid[x][y].getTileState();
         //System.out.println(myGrid[x][y].getTileState());
         if (myGrid[x][y].getBomb() == true){
             System.out.println("you lose!!!");
+            return false;
         } else if (myGrid[x][y].getBomb() == false){
             revealEmptyTiles(x,y);
             //System.out.println("after reveal");
         }
+        return true;
     }
 
-    public void clickOrFlag(){
+    public boolean clickOrFlag(){
         Scanner myScanner = new Scanner(System.in);
         System.out.print("type 1 for clicking a tile or 2 for placing a flag: ");
         int leftOrRight = myScanner.nextInt();
@@ -142,14 +144,17 @@ public class Grid {
             int y = myScanner.nextInt();
             System.out.print("type the Y coordinate of the tile you would like to click: ");
             int x = myScanner.nextInt();
-            clickSpot(x,y);
+            return clickSpot(x,y);
         } else if (leftOrRight == 2) {
             System.out.print("type the X coordinate of the tile you would like to set a flag: ");
             int y = myScanner.nextInt();
             System.out.print("type the Y coordinate of the tile you would like to set a flag: ");
             int x = myScanner.nextInt();
             setFlags(x,y);
+        } else if (leftOrRight == 3) {
+            return false;
         }
+        return true;
     }
 
     public void revealEmptyTiles(int x, int y){

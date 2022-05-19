@@ -45,7 +45,7 @@ public class Tile {
 
     public void setBomb(){
         this.bomb = true;
-        this.state = "X";
+        //this.state = "X";
     }
 
     public boolean getBomb(){
