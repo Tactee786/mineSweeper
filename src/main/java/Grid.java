@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Grid {
@@ -34,6 +35,7 @@ public class Grid {
         System.out.println("- - - - - - - - - - - - - - -");
     }
 
+    @SuppressWarnings("PointlessBooleanExpression")
     public void setBombLocation(int difficulty){
         int a = 0;
         while (a < difficulty){
@@ -43,17 +45,14 @@ public class Grid {
                 int y = rand.nextInt(this.columnCount);
                 if (myGrid[x][y].bomb==false){
                     myGrid[x][y].setBomb();
-                    //System.out.println(y + " " + x);
-                    //System.out.println(i);
                     a++;
-                } else {
-                    //System.out.println("already bomb or dunno.");
                 }
             }
         }
 
     }
 
+    @SuppressWarnings({"PointlessBooleanExpression", "ConstantConditions"})
     public void setTileValues(){
         for (int i = 0; i < rowCount; i++){
             for (int j = 0; j < columnCount; j++){
@@ -99,16 +98,8 @@ public class Grid {
                             bombCount++;
                         }
                     }//8
-                    //System.out.println("there is no bomb: ");
-                    //myGrid[i][j].setState(bombCount);
                     myGrid[i][j].bombCount=(bombCount);
-                    //System.out.println(bombCount);
                 }
-                /*if (myGrid[i][j].bomb == true){
-                    int a = 1;
-                    System.out.println("there is a bomb: " + a);
-                    a++;
-                }*/
             }
         }
     }
@@ -119,12 +110,11 @@ public class Grid {
         myGrid[x][y].setFlag();
     }
 
+    @SuppressWarnings("PointlessBooleanExpression")
     public boolean clickSpot(int x, int y){
         x -= 1;
         y -= 1;
         if ((x >= 0 && x <= this.rowCount - 1) && (y >= 0 && y <= columnCount - 1)){
-            myGrid[x][y].getTileState();
-            //System.out.println(myGrid[x][y].getTileState());
             if (myGrid[x][y].getBomb() == true){
                 System.out.println("you lose!!!");
                 return false;
@@ -163,7 +153,7 @@ public class Grid {
         return true;
     }
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
     public void revealEmptyTiles(int x, int y){
         if  (myGrid[x][y].visible == false) {
             if (myGrid[x][y].getBombCount() == 0) {
@@ -201,7 +191,7 @@ public class Grid {
                     myGrid[x - 1][y + 1].setState(myGrid[x - 1][y + 1].getBombCount());
                     revealEmptyTiles(x - 1, y + 1);
                 }//8
-            } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
+            } else if ((myGrid[x][y].getBombCount() != 0) && (!Objects.equals(myGrid[x][y].getTileState(), "X"))) {
                 myGrid[x][y].setVisible();
                 myGrid[x][y].setState(myGrid[x][y].getBombCount());
             }
