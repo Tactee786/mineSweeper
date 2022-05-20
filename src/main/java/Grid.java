@@ -27,7 +27,6 @@ public class Grid {
     public void getMyGrid() {
         for (int i = 0; i < rowCount; i++){
             for (int j = 0; j < columnCount; j++){
-                Tile myTile = new Tile(false,false,false, "0",0);
                 System.out.print(myGrid[i][j].getTileState() + "  ");
             }
             System.out.print("\n");
@@ -60,42 +59,42 @@ public class Grid {
             for (int j = 0; j < columnCount; j++){
                 if (myGrid[i][j].bomb == false){
                     int bombCount = 0;
-                    if ((i-1 >= 0 && i-1 <= 9) && (j >= 0 && j <= 9)){
+                    if ((i-1 >= 0 && i-1 <= this.rowCount-1) && (j >= 0 && j <= columnCount-1)){
                         if (myGrid[i-1][j].bomb == true){
                             bombCount++;
                         }
                     }//1
-                    if ((i-1 >= 0 && i-1 <= 9) && (j-1 >= 0 && j-1 <= 9)){
+                    if ((i-1 >= 0 && i-1 <= rowCount-1) && (j-1 >= 0 && j-1 <= columnCount-1)){
                         if (myGrid[i-1][j-1].bomb == true){
                             bombCount++;
                         }
                     }//2
-                    if ((i >= 0 && i <= 9) && (j-1 >= 0 && j-1 <= 9)){
+                    if ((i >= 0 && i <= rowCount-1) && (j-1 >= 0 && j-1 <= columnCount-1)){
                         if (myGrid[i][j-1].bomb == true){
                             bombCount++;
                         }
                     }//3
-                    if ((i+1 >= 0 && i+1 <= 9) && (j-1 >= 0 && j-1 <= 9)){
+                    if ((i+1 >= 0 && i+1 <= rowCount-1) && (j-1 >= 0 && j-1 <= columnCount-1)){
                         if (myGrid[i+1][j-1].bomb == true){
                             bombCount++;
                         }
                     }//4
-                    if ((i+1 >= 0 && i+1 <= 9) && (j >= 0 && j <= 9)){
+                    if ((i+1 >= 0 && i+1 <= rowCount-1) && (j >= 0 && j <= columnCount-1)){
                         if (myGrid[i+1][j].bomb == true){
                             bombCount++;
                         }
                     }//5
-                    if ((i+1 >= 0 && i+1 <= 9) && (j+1 >= 0 && j+1 <= 9)){
+                    if ((i+1 >= 0 && i+1 <= rowCount-1) && (j+1 >= 0 && j+1 <= columnCount-1)){
                         if (myGrid[i+1][j+1].bomb == true){
                             bombCount++;
                         }
                     }//6
-                    if ((i >= 0 && i <= 9) && (j+1 >= 0 && j+1 <= 9)){
+                    if ((i >= 0 && i <= rowCount-1) && (j+1 >= 0 && j+1 <= columnCount-1)){
                         if (myGrid[i][j+1].bomb == true){
                             bombCount++;
                         }
                     }//7
-                    if ((i-1 >= 0 && i-1 <= 9) && (j+1 >= 0 && j+1 <= 9)){
+                    if ((i-1 >= 0 && i-1 <= rowCount-1) && (j+1 >= 0 && j+1 <= columnCount-1)){
                         if (myGrid[i-1][j+1].bomb == true){
                             bombCount++;
                         }
@@ -137,7 +136,7 @@ public class Grid {
 
     public boolean clickOrFlag(){
         Scanner myScanner = new Scanner(System.in);
-        System.out.print("type 1 for clicking a tile or 2 for placing a flag: ");
+        System.out.print("type 1 for clicking a tile or 2 for placing a flag | 3 to leave the game: ");
         int leftOrRight = myScanner.nextInt();
         if (leftOrRight == 1){
             System.out.print("type the X coordinate of the tile you would like to click: ");
@@ -152,7 +151,10 @@ public class Grid {
             int x = myScanner.nextInt();
             setFlags(x,y);
         } else if (leftOrRight == 3) {
+            System.out.println("why you leave the game?");
             return false;
+        } else {
+            clickOrFlag();
         }
         return true;
     }
