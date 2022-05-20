@@ -25,10 +25,10 @@
     }
 
     public void setFlag(){
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        this.flag = !this.flag;</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        this.flag = !this.flag;</span>
         //System.out.println(getBomb());
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if ((this.flag) == true){</span>
-<span class="nc" id="L31">            this.state = &quot;F&quot;;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if ((this.flag) == true){</span>
+<span class="fc" id="L31">            this.state = &quot;F&quot;;</span>
 <span class="nc bnc" id="L32" title="All 6 branches missed.">        } else if (this.flag == false &amp;&amp; this.bomb == true &amp;&amp; this.visible == false) {</span>
             //this.state = &quot;X&quot;;
             // this.state = &quot;O&quot;;
@@ -37,10 +37,10 @@
 <span class="nc bnc" id="L37" title="All 6 branches missed.">        } else if (this.flag == false &amp;&amp; this.bomb == false &amp;&amp; this.visible == true){</span>
 <span class="nc" id="L38">            this.state = Integer.toString(bombCount);</span>
         }
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L40">    }</span>
 
     public boolean setVisible(){
-<span class="nc" id="L43">        return (this.visible = true);</span>
+<span class="fc" id="L43">        return (this.visible = true);</span>
     }
 
     public void setBomb(){
@@ -49,7 +49,7 @@
 <span class="nc" id="L49">    }</span>
 
     public boolean getBomb(){
-<span class="nc" id="L52">        return this.bomb;</span>
+<span class="fc" id="L52">        return this.bomb;</span>
     }
 
     public void setState(int bombCount){

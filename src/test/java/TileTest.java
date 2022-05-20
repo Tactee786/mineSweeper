@@ -10,4 +10,20 @@ public class TileTest {
         Assertions.assertEquals("O", myTile.getTileState(),"incorrect state.");
     }
 
+    @Test
+    public void testGetBomb(){
+        Assertions.assertEquals(true, myTile.getBomb(), "incorrect bomb boolean value");
+    }
+
+    @Test
+    public void testSetVisible(){
+        Assertions.assertEquals(true, myTile.setVisible(),"not set to visible");
+    }
+
+    @Test
+    public void testSetFlag(){
+        myTile.setFlag();
+        Assertions.assertEquals("F", myTile.getTileState(), "flag not set");
+    }
+
 }

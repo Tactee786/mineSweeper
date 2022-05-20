@@ -122,55 +122,104 @@ public class Grid {
     public boolean clickSpot(int x, int y){
 <span class="nc" id="L123">        x -= 1;</span>
 <span class="nc" id="L124">        y -= 1;</span>
-<span class="nc" id="L125">        myGrid[x][y].getTileState();</span>
-        //System.out.println(myGrid[x][y].getTileState());
-<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (myGrid[x][y].getBomb() == true){</span>
-<span class="nc" id="L128">            System.out.println(&quot;you lose!!!&quot;);</span>
-<span class="nc" id="L129">            return false;</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        } else if (myGrid[x][y].getBomb() == false){</span>
-<span class="nc" id="L131">            revealEmptyTiles(x,y);</span>
-            //System.out.println(&quot;after reveal&quot;);
+<span class="nc bnc" id="L125" title="All 8 branches missed.">        if ((x &gt;= 0 &amp;&amp; x &lt;= this.rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)){</span>
+<span class="nc" id="L126">            myGrid[x][y].getTileState();</span>
+            //System.out.println(myGrid[x][y].getTileState());
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (myGrid[x][y].getBomb() == true){</span>
+<span class="nc" id="L129">                System.out.println(&quot;you lose!!!&quot;);</span>
+<span class="nc" id="L130">                return false;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            } else if (myGrid[x][y].getBomb() == false){</span>
+<span class="nc" id="L132">                revealEmptyTiles(x,y);</span>
+                //System.out.println(&quot;after reveal&quot;);
+            }
+        } else {
+<span class="nc" id="L136">            clickOrFlag();</span>
         }
-<span class="nc" id="L134">        return true;</span>
+<span class="nc" id="L138">        return true;</span>
     }
 
     public boolean clickOrFlag(){
-<span class="nc" id="L138">        Scanner myScanner = new Scanner(System.in);</span>
-<span class="nc" id="L139">        System.out.print(&quot;type 1 for clicking a tile or 2 for placing a flag | 3 to leave the game: &quot;);</span>
-<span class="nc" id="L140">        int leftOrRight = myScanner.nextInt();</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (leftOrRight == 1){</span>
-<span class="nc" id="L142">            System.out.print(&quot;type the X coordinate of the tile you would like to click: &quot;);</span>
-<span class="nc" id="L143">            int y = myScanner.nextInt();</span>
-<span class="nc" id="L144">            System.out.print(&quot;type the Y coordinate of the tile you would like to click: &quot;);</span>
-<span class="nc" id="L145">            int x = myScanner.nextInt();</span>
-<span class="nc" id="L146">            return clickSpot(x,y);</span>
-<span class="nc bnc" id="L147" title="All 2 branches missed.">        } else if (leftOrRight == 2) {</span>
-<span class="nc" id="L148">            System.out.print(&quot;type the X coordinate of the tile you would like to set a flag: &quot;);</span>
-<span class="nc" id="L149">            int y = myScanner.nextInt();</span>
-<span class="nc" id="L150">            System.out.print(&quot;type the Y coordinate of the tile you would like to set a flag: &quot;);</span>
-<span class="nc" id="L151">            int x = myScanner.nextInt();</span>
-<span class="nc" id="L152">            setFlags(x,y);</span>
-<span class="nc bnc" id="L153" title="All 2 branches missed.">        } else if (leftOrRight == 3) {</span>
-<span class="nc" id="L154">            System.out.println(&quot;why you leave the game?&quot;);</span>
-<span class="nc" id="L155">            return false;</span>
+<span class="nc" id="L142">        Scanner myScanner = new Scanner(System.in);</span>
+<span class="nc" id="L143">        System.out.print(&quot;type 1 for clicking a tile or 2 for placing a flag | 3 to leave the game: &quot;);</span>
+<span class="nc" id="L144">        int leftOrRight = myScanner.nextInt();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (leftOrRight == 1){</span>
+<span class="nc" id="L146">            System.out.print(&quot;type the X coordinate of the tile you would like to click: &quot;);</span>
+<span class="nc" id="L147">            int y = myScanner.nextInt();</span>
+<span class="nc" id="L148">            System.out.print(&quot;type the Y coordinate of the tile you would like to click: &quot;);</span>
+<span class="nc" id="L149">            int x = myScanner.nextInt();</span>
+<span class="nc" id="L150">            return clickSpot(x,y);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        } else if (leftOrRight == 2) {</span>
+<span class="nc" id="L152">            System.out.print(&quot;type the X coordinate of the tile you would like to set a flag: &quot;);</span>
+<span class="nc" id="L153">            int y = myScanner.nextInt();</span>
+<span class="nc" id="L154">            System.out.print(&quot;type the Y coordinate of the tile you would like to set a flag: &quot;);</span>
+<span class="nc" id="L155">            int x = myScanner.nextInt();</span>
+<span class="nc" id="L156">            setFlags(x,y);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        } else if (leftOrRight == 3) {</span>
+<span class="nc" id="L158">            System.out.println(&quot;why you leave the game?&quot;);</span>
+<span class="nc" id="L159">            return false;</span>
         } else {
-<span class="nc" id="L157">            clickOrFlag();</span>
+<span class="nc" id="L161">            clickOrFlag();</span>
         }
-<span class="nc" id="L159">        return true;</span>
+<span class="nc" id="L163">        return true;</span>
     }
 
-    public void revealEmptyTiles(int x, int y){
-        //System.out.println(myGrid[x][y].getBombCount() + &quot;hello&quot;);
-<span class="nc bnc" id="L164" title="All 2 branches missed.">        if (myGrid[x][y].getBombCount() == 0){</span>
-<span class="nc" id="L165">            myGrid[x][y].setVisible();</span>
-<span class="nc" id="L166">            myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
-<span class="nc bnc" id="L167" title="All 4 branches missed.">        } else if ((myGrid[x][y].getBombCount() != 0) &amp;&amp; (myGrid[x][y].getTileState() != &quot;X&quot;)) {</span>
-<span class="nc" id="L168">            myGrid[x][y].setVisible();</span>
-<span class="nc" id="L169">            myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
+    /*public void revealEmptyTiles(int x, int y){
+        if (myGrid[x][y].getBombCount() == 0){
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
+        } else if ((myGrid[x][y].getBombCount() != 0) &amp;&amp; (myGrid[x][y].getTileState() != &quot;X&quot;)) {
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
         } else {
-<span class="nc" id="L171">            System.out.println(&quot;not null&quot;);</span>
+            System.out.println(&quot;null&quot;);
         }
-<span class="nc" id="L173">    }</span>
+    }*/
+
+    @SuppressWarnings(&quot;ConstantConditions&quot;)
+    public void revealEmptyTiles(int x, int y){
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if  (myGrid[x][y].visible == false) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (myGrid[x][y].getBombCount() == 0) {</span>
+<span class="nc" id="L182">                myGrid[x][y].setVisible();</span>
+<span class="nc" id="L183">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
+<span class="nc bnc" id="L184" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= this.rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L185">                    myGrid[x - 1][y].setState(myGrid[x - 1][y].getBombCount());</span>
+<span class="nc" id="L186">                    revealEmptyTiles(x - 1, y);</span>
+                }//1
+<span class="nc bnc" id="L188" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L189">                    myGrid[x - 1][y - 1].setState(myGrid[x - 1][y - 1].getBombCount());</span>
+<span class="nc" id="L190">                    revealEmptyTiles(x - 1, y - 1);</span>
+                }//2
+<span class="nc bnc" id="L192" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L193">                    myGrid[x][y - 1].setState(myGrid[x][y - 1].getBombCount());</span>
+<span class="nc" id="L194">                    revealEmptyTiles(x, y - 1);</span>
+                }//3
+<span class="nc bnc" id="L196" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L197">                    myGrid[x + 1][y - 1].setState(myGrid[x + 1][y - 1].getBombCount());</span>
+<span class="nc" id="L198">                    revealEmptyTiles(x + 1, y - 1);</span>
+                }//4
+<span class="nc bnc" id="L200" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L201">                    myGrid[x + 1][y].setState(myGrid[x + 1][y].getBombCount());</span>
+<span class="nc" id="L202">                    revealEmptyTiles(x + 1, y);</span>
+                }//5
+<span class="nc bnc" id="L204" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L205">                    myGrid[x + 1][y + 1].setState(myGrid[x + 1][y + 1].getBombCount());</span>
+<span class="nc" id="L206">                    revealEmptyTiles(x + 1, y + 1);</span>
+                }//6
+<span class="nc bnc" id="L208" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L209">                    myGrid[x][y + 1].setState(myGrid[x][y + 1].getBombCount());</span>
+<span class="nc" id="L210">                    revealEmptyTiles(x, y + 1);</span>
+                }//7
+<span class="nc bnc" id="L212" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L213">                    myGrid[x - 1][y + 1].setState(myGrid[x - 1][y + 1].getBombCount());</span>
+<span class="nc" id="L214">                    revealEmptyTiles(x - 1, y + 1);</span>
+                }//8
+<span class="nc bnc" id="L216" title="All 4 branches missed.">            } else if ((myGrid[x][y].getBombCount() != 0) &amp;&amp; (myGrid[x][y].getTileState() != &quot;X&quot;)) {</span>
+<span class="nc" id="L217">                myGrid[x][y].setVisible();</span>
+<span class="nc" id="L218">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
+            }
+        }
+<span class="nc" id="L221">    }</span>
+
 
 }
 //(myGrid[x][y].getTileState() != &quot;X&quot;)
