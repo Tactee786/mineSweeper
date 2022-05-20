@@ -1,6 +1,14 @@
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Grid myGrid = new Grid(10, 10, 10);
+        Scanner myScanner = new Scanner(System.in);
+        System.out.print("Row count: ");
+        int myRowCount = myScanner.nextInt();
+        System.out.print("Column count: ");
+        int myColumnCount = myScanner.nextInt();
+        System.out.print("Difficulty lvl, number of bomb you would like to have in here: ");
+        int myDifficulty = myScanner.nextInt();
+        Grid myGrid = new Grid(myRowCount, myColumnCount, myDifficulty);
         myGrid.getMyGrid();
         myGrid.setBombLocation(myGrid.difficulty);
         myGrid.setTileValues();
