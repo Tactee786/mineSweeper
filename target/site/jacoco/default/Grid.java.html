@@ -163,7 +163,59 @@ public class Grid {
 <span class="nc" id="L163">        return true;</span>
     }
 
-    /*public void revealEmptyTiles(int x, int y){
+    @SuppressWarnings(&quot;ConstantConditions&quot;)
+    public void revealEmptyTiles(int x, int y){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        if  (myGrid[x][y].visible == false) {</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (myGrid[x][y].getBombCount() == 0) {</span>
+<span class="nc" id="L170">                myGrid[x][y].setVisible();</span>
+<span class="nc" id="L171">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
+<span class="nc bnc" id="L172" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= this.rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L173">                    myGrid[x - 1][y].setState(myGrid[x - 1][y].getBombCount());</span>
+<span class="nc" id="L174">                    revealEmptyTiles(x - 1, y);</span>
+                }//1
+<span class="nc bnc" id="L176" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L177">                    myGrid[x - 1][y - 1].setState(myGrid[x - 1][y - 1].getBombCount());</span>
+<span class="nc" id="L178">                    revealEmptyTiles(x - 1, y - 1);</span>
+                }//2
+<span class="nc bnc" id="L180" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L181">                    myGrid[x][y - 1].setState(myGrid[x][y - 1].getBombCount());</span>
+<span class="nc" id="L182">                    revealEmptyTiles(x, y - 1);</span>
+                }//3
+<span class="nc bnc" id="L184" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L185">                    myGrid[x + 1][y - 1].setState(myGrid[x + 1][y - 1].getBombCount());</span>
+<span class="nc" id="L186">                    revealEmptyTiles(x + 1, y - 1);</span>
+                }//4
+<span class="nc bnc" id="L188" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L189">                    myGrid[x + 1][y].setState(myGrid[x + 1][y].getBombCount());</span>
+<span class="nc" id="L190">                    revealEmptyTiles(x + 1, y);</span>
+                }//5
+<span class="nc bnc" id="L192" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L193">                    myGrid[x + 1][y + 1].setState(myGrid[x + 1][y + 1].getBombCount());</span>
+<span class="nc" id="L194">                    revealEmptyTiles(x + 1, y + 1);</span>
+                }//6
+<span class="nc bnc" id="L196" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L197">                    myGrid[x][y + 1].setState(myGrid[x][y + 1].getBombCount());</span>
+<span class="nc" id="L198">                    revealEmptyTiles(x, y + 1);</span>
+                }//7
+<span class="nc bnc" id="L200" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
+<span class="nc" id="L201">                    myGrid[x - 1][y + 1].setState(myGrid[x - 1][y + 1].getBombCount());</span>
+<span class="nc" id="L202">                    revealEmptyTiles(x - 1, y + 1);</span>
+                }//8
+<span class="nc bnc" id="L204" title="All 4 branches missed.">            } else if ((myGrid[x][y].getBombCount() != 0) &amp;&amp; (myGrid[x][y].getTileState() != &quot;X&quot;)) {</span>
+<span class="nc" id="L205">                myGrid[x][y].setVisible();</span>
+<span class="nc" id="L206">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
+            }
+        }
+<span class="nc" id="L209">    }</span>
+
+
+}
+//(myGrid[x][y].getTileState() != &quot;X&quot;)
+//(myGrid[x][y].getBombCount())
+/*else if (myGrid[x][y].getTileState() != &quot;X&quot;) {
+            System.out.println(&quot;Bomb count is dunno&quot;);
+        }*/
+/*public void revealEmptyTiles(int x, int y){
         if (myGrid[x][y].getBombCount() == 0){
             myGrid[x][y].setVisible();
             myGrid[x][y].setState(myGrid[x][y].getBombCount());
@@ -174,57 +226,4 @@ public class Grid {
             System.out.println(&quot;null&quot;);
         }
     }*/
-
-    @SuppressWarnings(&quot;ConstantConditions&quot;)
-    public void revealEmptyTiles(int x, int y){
-<span class="nc bnc" id="L180" title="All 2 branches missed.">        if  (myGrid[x][y].visible == false) {</span>
-<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (myGrid[x][y].getBombCount() == 0) {</span>
-<span class="nc" id="L182">                myGrid[x][y].setVisible();</span>
-<span class="nc" id="L183">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
-<span class="nc bnc" id="L184" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= this.rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L185">                    myGrid[x - 1][y].setState(myGrid[x - 1][y].getBombCount());</span>
-<span class="nc" id="L186">                    revealEmptyTiles(x - 1, y);</span>
-                }//1
-<span class="nc bnc" id="L188" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L189">                    myGrid[x - 1][y - 1].setState(myGrid[x - 1][y - 1].getBombCount());</span>
-<span class="nc" id="L190">                    revealEmptyTiles(x - 1, y - 1);</span>
-                }//2
-<span class="nc bnc" id="L192" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L193">                    myGrid[x][y - 1].setState(myGrid[x][y - 1].getBombCount());</span>
-<span class="nc" id="L194">                    revealEmptyTiles(x, y - 1);</span>
-                }//3
-<span class="nc bnc" id="L196" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y - 1 &gt;= 0 &amp;&amp; y - 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L197">                    myGrid[x + 1][y - 1].setState(myGrid[x + 1][y - 1].getBombCount());</span>
-<span class="nc" id="L198">                    revealEmptyTiles(x + 1, y - 1);</span>
-                }//4
-<span class="nc bnc" id="L200" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y &gt;= 0 &amp;&amp; y &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L201">                    myGrid[x + 1][y].setState(myGrid[x + 1][y].getBombCount());</span>
-<span class="nc" id="L202">                    revealEmptyTiles(x + 1, y);</span>
-                }//5
-<span class="nc bnc" id="L204" title="All 8 branches missed.">                if ((x + 1 &gt;= 0 &amp;&amp; x + 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L205">                    myGrid[x + 1][y + 1].setState(myGrid[x + 1][y + 1].getBombCount());</span>
-<span class="nc" id="L206">                    revealEmptyTiles(x + 1, y + 1);</span>
-                }//6
-<span class="nc bnc" id="L208" title="All 8 branches missed.">                if ((x &gt;= 0 &amp;&amp; x &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L209">                    myGrid[x][y + 1].setState(myGrid[x][y + 1].getBombCount());</span>
-<span class="nc" id="L210">                    revealEmptyTiles(x, y + 1);</span>
-                }//7
-<span class="nc bnc" id="L212" title="All 8 branches missed.">                if ((x - 1 &gt;= 0 &amp;&amp; x - 1 &lt;= rowCount - 1) &amp;&amp; (y + 1 &gt;= 0 &amp;&amp; y + 1 &lt;= columnCount - 1)) {</span>
-<span class="nc" id="L213">                    myGrid[x - 1][y + 1].setState(myGrid[x - 1][y + 1].getBombCount());</span>
-<span class="nc" id="L214">                    revealEmptyTiles(x - 1, y + 1);</span>
-                }//8
-<span class="nc bnc" id="L216" title="All 4 branches missed.">            } else if ((myGrid[x][y].getBombCount() != 0) &amp;&amp; (myGrid[x][y].getTileState() != &quot;X&quot;)) {</span>
-<span class="nc" id="L217">                myGrid[x][y].setVisible();</span>
-<span class="nc" id="L218">                myGrid[x][y].setState(myGrid[x][y].getBombCount());</span>
-            }
-        }
-<span class="nc" id="L221">    }</span>
-
-
-}
-//(myGrid[x][y].getTileState() != &quot;X&quot;)
-//(myGrid[x][y].getBombCount())
-/*else if (myGrid[x][y].getTileState() != &quot;X&quot;) {
-            System.out.println(&quot;Bomb count is dunno&quot;);
-        }*/
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

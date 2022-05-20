@@ -3,27 +3,32 @@ import org.junit.jupiter.api.Test;
 
 
 public class TileTest {
-    Tile myTile = new Tile(false, true, false, "O",0);
-
     @Test
     public void testGetState(){
-        Assertions.assertEquals("O", myTile.getTileState(),"incorrect state.");
+        Tile myTileBomb = new Tile(false, true, false, "O",3);
+        Assertions.assertEquals("O", myTileBomb.getTileState(),"incorrect state.");
     }
-
     @Test
     public void testGetBomb(){
-        Assertions.assertEquals(true, myTile.getBomb(), "incorrect bomb boolean value");
+        Tile myTileBomb = new Tile(false, true, false, "O",3);
+        Assertions.assertEquals(true, myTileBomb.getBomb(), "incorrect bomb boolean value");
     }
-
     @Test
     public void testSetVisible(){
-        Assertions.assertEquals(true, myTile.setVisible(),"not set to visible");
+        Tile myTileBomb = new Tile(false, true, false, "O",3);
+        Assertions.assertEquals(true, myTileBomb.setVisible(),"not set to visible");
     }
-
     @Test
     public void testSetFlag(){
-        myTile.setFlag();
-        Assertions.assertEquals("F", myTile.getTileState(), "flag not set");
+        Tile myTileBomb = new Tile(false, true, false, "O",3);
+        myTileBomb.setFlag();
+        Assertions.assertEquals("F", myTileBomb.getTileState(), "flag not set");
+    }
+    @Test
+    public void testSetState(){
+        Tile myTile3 = new Tile(false, true, false, "O",3);
+        myTile3.setState(myTile3.bombCount);
+        Assertions.assertEquals("3", myTile3.getTileState(),"incorrect value");
     }
 
 }

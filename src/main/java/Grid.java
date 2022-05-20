@@ -163,18 +163,6 @@ public class Grid {
         return true;
     }
 
-    /*public void revealEmptyTiles(int x, int y){
-        if (myGrid[x][y].getBombCount() == 0){
-            myGrid[x][y].setVisible();
-            myGrid[x][y].setState(myGrid[x][y].getBombCount());
-        } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
-            myGrid[x][y].setVisible();
-            myGrid[x][y].setState(myGrid[x][y].getBombCount());
-        } else {
-            System.out.println("null");
-        }
-    }*/
-
     @SuppressWarnings("ConstantConditions")
     public void revealEmptyTiles(int x, int y){
         if  (myGrid[x][y].visible == false) {
@@ -227,3 +215,14 @@ public class Grid {
 /*else if (myGrid[x][y].getTileState() != "X") {
             System.out.println("Bomb count is dunno");
         }*/
+/*public void revealEmptyTiles(int x, int y){
+        if (myGrid[x][y].getBombCount() == 0){
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
+        } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
+            myGrid[x][y].setVisible();
+            myGrid[x][y].setState(myGrid[x][y].getBombCount());
+        } else {
+            System.out.println("null");
+        }
+    }*/
