@@ -122,14 +122,18 @@ public class Grid {
     public boolean clickSpot(int x, int y){
         x -= 1;
         y -= 1;
-        myGrid[x][y].getTileState();
-        //System.out.println(myGrid[x][y].getTileState());
-        if (myGrid[x][y].getBomb() == true){
-            System.out.println("you lose!!!");
-            return false;
-        } else if (myGrid[x][y].getBomb() == false){
-            revealEmptyTiles(x,y);
-            //System.out.println("after reveal");
+        if ((x >= 0 && x <= this.rowCount - 1) && (y >= 0 && y <= columnCount - 1)){
+            myGrid[x][y].getTileState();
+            //System.out.println(myGrid[x][y].getTileState());
+            if (myGrid[x][y].getBomb() == true){
+                System.out.println("you lose!!!");
+                return false;
+            } else if (myGrid[x][y].getBomb() == false){
+                revealEmptyTiles(x,y);
+                //System.out.println("after reveal");
+            }
+        } else {
+            clickOrFlag();
         }
         return true;
     }
@@ -159,8 +163,7 @@ public class Grid {
         return true;
     }
 
-    public void revealEmptyTiles(int x, int y){
-        //System.out.println(myGrid[x][y].getBombCount() + "hello");
+    /*public void revealEmptyTiles(int x, int y){
         if (myGrid[x][y].getBombCount() == 0){
             myGrid[x][y].setVisible();
             myGrid[x][y].setState(myGrid[x][y].getBombCount());
@@ -168,9 +171,55 @@ public class Grid {
             myGrid[x][y].setVisible();
             myGrid[x][y].setState(myGrid[x][y].getBombCount());
         } else {
-            System.out.println("not null");
+            System.out.println("null");
+        }
+    }*/
+
+    @SuppressWarnings("ConstantConditions")
+    public void revealEmptyTiles(int x, int y){
+        if  (myGrid[x][y].visible == false) {
+            if (myGrid[x][y].getBombCount() == 0) {
+                myGrid[x][y].setVisible();
+                myGrid[x][y].setState(myGrid[x][y].getBombCount());
+                if ((x - 1 >= 0 && x - 1 <= this.rowCount - 1) && (y >= 0 && y <= columnCount - 1)) {
+                    myGrid[x - 1][y].setState(myGrid[x - 1][y].getBombCount());
+                    revealEmptyTiles(x - 1, y);
+                }//1
+                if ((x - 1 >= 0 && x - 1 <= rowCount - 1) && (y - 1 >= 0 && y - 1 <= columnCount - 1)) {
+                    myGrid[x - 1][y - 1].setState(myGrid[x - 1][y - 1].getBombCount());
+                    revealEmptyTiles(x - 1, y - 1);
+                }//2
+                if ((x >= 0 && x <= rowCount - 1) && (y - 1 >= 0 && y - 1 <= columnCount - 1)) {
+                    myGrid[x][y - 1].setState(myGrid[x][y - 1].getBombCount());
+                    revealEmptyTiles(x, y - 1);
+                }//3
+                if ((x + 1 >= 0 && x + 1 <= rowCount - 1) && (y - 1 >= 0 && y - 1 <= columnCount - 1)) {
+                    myGrid[x + 1][y - 1].setState(myGrid[x + 1][y - 1].getBombCount());
+                    revealEmptyTiles(x + 1, y - 1);
+                }//4
+                if ((x + 1 >= 0 && x + 1 <= rowCount - 1) && (y >= 0 && y <= columnCount - 1)) {
+                    myGrid[x + 1][y].setState(myGrid[x + 1][y].getBombCount());
+                    revealEmptyTiles(x + 1, y);
+                }//5
+                if ((x + 1 >= 0 && x + 1 <= rowCount - 1) && (y + 1 >= 0 && y + 1 <= columnCount - 1)) {
+                    myGrid[x + 1][y + 1].setState(myGrid[x + 1][y + 1].getBombCount());
+                    revealEmptyTiles(x + 1, y + 1);
+                }//6
+                if ((x >= 0 && x <= rowCount - 1) && (y + 1 >= 0 && y + 1 <= columnCount - 1)) {
+                    myGrid[x][y + 1].setState(myGrid[x][y + 1].getBombCount());
+                    revealEmptyTiles(x, y + 1);
+                }//7
+                if ((x - 1 >= 0 && x - 1 <= rowCount - 1) && (y + 1 >= 0 && y + 1 <= columnCount - 1)) {
+                    myGrid[x - 1][y + 1].setState(myGrid[x - 1][y + 1].getBombCount());
+                    revealEmptyTiles(x - 1, y + 1);
+                }//8
+            } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
+                myGrid[x][y].setVisible();
+                myGrid[x][y].setState(myGrid[x][y].getBombCount());
+            }
         }
     }
+
 
 }
 //(myGrid[x][y].getTileState() != "X")

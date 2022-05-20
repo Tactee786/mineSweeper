@@ -6,18 +6,6 @@ public class Main {
         myGrid.setTileValues();
         myGrid.getMyGrid();
 
-        /*myGrid.setFlags(4,4);
-        myGrid.getMyGrid();
-
-        myGrid.setFlags(4,4);
-        myGrid.getMyGrid();*/
-
-        /*myGrid.clickOrFlag();
-        myGrid.getMyGrid();
-        myGrid.clickOrFlag();
-        myGrid.getMyGrid();
-        myGrid.clickOrFlag();
-        myGrid.getMyGrid();*/
         boolean cont = true;
         while (cont == true) {
             cont = playTheGame(myGrid);
