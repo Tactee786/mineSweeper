@@ -7,14 +7,16 @@ public class Grid {
     int rowCount;
     int columnCount;
     int difficulty;
-    //int bombCount = ((rowCount * columnCount)/100)*20;
+    int flagAndBomb;
+    int tilesLeft;
     Tile[][] myGrid;
 
     // Constructor
-    public Grid(int myRowCount, int myColumnCount, int myDifficulty){
+    public Grid(int myRowCount, int myColumnCount, int myDifficulty, int myFlagAndBomb){
         this.rowCount = myRowCount;
         this.columnCount = myColumnCount;
         this.difficulty = myDifficulty;
+        this.flagAndBomb = myFlagAndBomb;
         this.myGrid = new Tile[rowCount][columnCount];
         for (int i = 0; i < rowCount; i++){
             for (int j = 0; j < columnCount; j++){
@@ -116,7 +118,7 @@ public class Grid {
         y -= 1;
         if ((x >= 0 && x <= this.rowCount - 1) && (y >= 0 && y <= columnCount - 1)){
             if (myGrid[x][y].getBomb() == true){
-                System.out.println("you lose!!!");
+                System.out.println("Wow you are bad!!!");
                 return false;
             } else if (myGrid[x][y].getBomb() == false){
                 revealEmptyTiles(x,y);
@@ -198,21 +200,27 @@ public class Grid {
         }
     }
 
+    public int flagsOnBombs() {
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < columnCount; j++) {
+                if (myGrid[i][j].bomb == true && myGrid[i][j].flag == true) {
+                    flagAndBomb++;
+                }
+            }
+        }
+        return flagAndBomb;
+    }
+
+    public int allTilesRevealed() {
+        tilesLeft = 0;
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < columnCount; j++) {
+                if (myGrid[i][j].visible == true && myGrid[i][j].bomb == false) {
+                    tilesLeft++;
+                }
+            }
+        }
+        return tilesLeft;
+    }
 
 }
-//(myGrid[x][y].getTileState() != "X")
-//(myGrid[x][y].getBombCount())
-/*else if (myGrid[x][y].getTileState() != "X") {
-            System.out.println("Bomb count is dunno");
-        }*/
-/*public void revealEmptyTiles(int x, int y){
-        if (myGrid[x][y].getBombCount() == 0){
-            myGrid[x][y].setVisible();
-            myGrid[x][y].setState(myGrid[x][y].getBombCount());
-        } else if ((myGrid[x][y].getBombCount() != 0) && (myGrid[x][y].getTileState() != "X")) {
-            myGrid[x][y].setVisible();
-            myGrid[x][y].setState(myGrid[x][y].getBombCount());
-        } else {
-            System.out.println("null");
-        }
-    }*/
